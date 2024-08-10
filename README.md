@@ -45,6 +45,9 @@ Replace `$(pwd)/downloads/` with the path to your local `downloads` directory yo
 
 ### Running Locally
 
+/!\ python version <= 3.11
+    (quelques dependances ne semblent pas dispo dans la version 3.12)
+
 2. Install the required Python packages:
    3. Install ffmpeg:
 
@@ -74,7 +77,12 @@ Replace `$(pwd)/downloads/` with the path to your local `downloads` directory yo
   ```
   sudo pip install yt-dlp
   ```
-
+4.1. recommandé : utiliser venv :
+  ```
+    python -m venv myenv
+    .\myenv\Scripts\Activate.ps1
+    pip install -r requirements.txt
+  ```
 5. Set up the environment variables:
 
 - Copy the `.env.example` file to a new file named `.env` in the root directory of your project.
