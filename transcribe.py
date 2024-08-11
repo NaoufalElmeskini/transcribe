@@ -1,16 +1,12 @@
-import json
-import logging
 import os
 import subprocess
 import sys
 from collections import deque
 from pathlib import Path
-from dotenv import load_dotenv
-from tafrigh import Config, TranscriptType, Writer, farrigh
-from tafrigh.recognizers.wit_recognizer import WitRecognizer
 
-from flask import Flask, request, jsonify
-from datetime import datetime
+from dotenv import load_dotenv
+from flask import Flask, request, jsonify, send_from_directory
+from tafrigh import Config, TranscriptType, farrigh
 
 # Load environment variables from .env file
 load_dotenv()
@@ -142,9 +138,6 @@ def transcribe(videoType, youtubeUrl, languageSign):
         print("Invalid choice. Exiting.")
         sys.exit(1)
 
-# if __name__ == "__main__":
-#     main()
-
 app = Flask(__name__)
 
 @app.route('/hello', methods=['POST'])
@@ -158,6 +151,10 @@ def hello():
     # Retourner le message personnalisé
     return jsonify(message=f"hello {first_name} {last_name}")
 
+def extract_file_name(youtube_url):
+    return youtube_url.split('/')[-1]
+
+
 @app.route('/transcribe', methods=['POST'])
 def transcribeYoutubeVideo():
     data = request.get_json()
@@ -167,8 +164,9 @@ def transcribeYoutubeVideo():
     language = data.get('language')
     transcribe(videoType, link, language)
 
-    # Retourner le message personnalisé
-    return jsonify(message=f"done transcribing.")
+    directory = os.path.join(os.path.dirname(__file__), 'downloads')
+    fileName = extract_file_name(link) + '.srt'
+    return send_from_directory(directory, fileName, as_attachment=True)
 
 if __name__ == '__main__':
     # Lancer l'application en mode debug
