@@ -6,6 +6,7 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 from flask import Flask, request, jsonify, send_from_directory
+from flask_cors import CORS
 from tafrigh import Config, TranscriptType, farrigh
 
 # Load environment variables from .env file
@@ -129,7 +130,6 @@ def main():
         print("Invalid choice. Exiting.")
         sys.exit(1)
 
-
 def transcribe(videoType, youtubeUrl, languageSign):
     if videoType == 'Y':
         audio_file = download_youtube_audio(youtubeUrl)
@@ -167,6 +167,8 @@ def transcribeYoutubeVideo():
     directory = os.path.join(os.path.dirname(__file__), 'downloads')
     fileName = extract_file_name(link) + '.srt'
     return send_from_directory(directory, fileName, as_attachment=True)
+
+CORS(app, origin=["localhost:5000"])
 
 if __name__ == '__main__':
     # Lancer l'application en mode debug
