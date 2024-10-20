@@ -151,6 +151,10 @@ def hello():
     # Retourner le message personnalisé
     return jsonify(message=f"hello {first_name} {last_name}")
 
+@app.route('/status', methods=['GET'])
+def status():
+    return jsonify(message=f"all good!")
+
 def extract_file_name(youtube_url):
     return youtube_url.split('/')[-1]
 

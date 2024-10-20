@@ -79,9 +79,10 @@ Replace `$(pwd)/downloads/` with the path to your local `downloads` directory yo
   ```
 4.1. recommandé : utiliser venv :
   ```
-    python -m venv myenv
-    .\myenv\Scripts\Activate.ps1
-    pip install -r requirements.txt
+    $ python -m venv myenv
+    (windows :) $ .\myenv\Scripts\Activate.ps1
+      (linux :) $ . myenv/bin/activate
+    $ pip install -r requirements.txt
   ```
 5. Set up the environment variables:
 
@@ -106,7 +107,6 @@ The release version eliminates the need for installing ffmpeg and yt-dlp separat
 
 
 ## Usage
-
 1. Run the script:
    python transcribe.py
 2. Choose whether you want to transcribe a YouTube video or a local file.
@@ -117,6 +117,10 @@ The release version eliminates the need for installing ffmpeg and yt-dlp separat
 
 5. Once the transcription is completed, the generated files (TXT and SRT) will be saved in the same directory as the input file.
 
+### api :
+  locally, this URL should return a reassuring message.
+  ``` $ curl --location --request GET '127.0.0.1:5000/status' ```
+  
 ## Acknowledgments
 
 This project was stolen from [marouane53](https://github.com/marouane53), 
