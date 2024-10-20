@@ -119,7 +119,8 @@ The release version eliminates the need for installing ffmpeg and yt-dlp separat
 
 ## Acknowledgments
 
-This project was inspired by and adapted from the [Tafrigh](https://github.com/ieasybooks/tafrigh) project.
+This project was stolen from [marouane53](https://github.com/marouane53), 
+  who stole it from the [Tafrigh](https://github.com/ieasybooks/tafrigh) project.
 
 ## License
 
