@@ -176,4 +176,4 @@ CORS(app, origin=["localhost:5000"])
 
 if __name__ == '__main__':
     # Lancer l'application en mode debug
-    app.run(debug=True)
+    app.run(host='0.0.0.0', debug=True)
